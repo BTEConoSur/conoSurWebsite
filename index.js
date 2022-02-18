@@ -1,7 +1,5 @@
 const kmlextractor = require('./kmlextractor');
 
-console.log('aaaaa')
-
 const express= require('express')
 const path = require('path');
 const app = express();
