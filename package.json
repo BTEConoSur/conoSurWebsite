@@ -1,0 +1,35 @@
+{
+  "dependencies": {
+    "@react-leaflet/universal-leaflet": "^1.0.1",
+    "axios": "^0.26.0",
+    "browserify": "^17.0.0",
+    "cheerio": "^1.0.0-rc.10",
+    "cors": "^2.8.5",
+    "express": "^4.17.2",
+    "filereader": "^0.10.3",
+    "nodemon": "^2.0.15",
+    "xmldom": "^0.6.0"
+  },
+  "name": "bte-conosur-website",
+  "version": "1.0.0",
+  "description": "La página web de BTE Conosur",
+  "main": "index.js",
+  "scripts": {
+    "test": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BTEConoSur/conoSurWebsite.git"
+  },
+  "keywords": [
+    "Build",
+    "The",
+    "Earth"
+  ],
+  "author": "MetroMan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BTEConoSur/conoSurWebsite/issues"
+  },
+  "homepage": "https://github.com/BTEConoSur/conoSurWebsite#readme"
+}

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+
+  <Placemark>
+
+    <name>A simple placemark on the ground</name>
+
+    <Point>
+			<coordinates>8.542952335953721,47.36685263064198,0</coordinates>
+    </Point>
+
+  </Placemark>
+   <Placemark>
+
+    <name>A simple placemark on the ground</name>
+
+    <Point>
+			<coordinates>-33.61816356127455,-70.68365153682296,0</coordinates>
+    </Point>
+
+  </Placemark>
+ 	<Placemark>
+
+		<name>A polygon</name>
+		<styleUrl>#orange-5px</styleUrl>
+
+		<LineString>
+
+			<tessellate>1</tessellate>
+			<coordinates>
+        8.542123809233731,47.36651432591258,0
+        8.542020373307826,47.36684332453151,0
+        8.544057950790664,47.36717881947375,0
+        8.544133279150493,47.36684482636069,0
+        8.542123809233731,47.36651432591258,0  <!-- End coordinates == start coordinates -->
+			</coordinates>
+
+		</LineString>
+
+	</Placemark>
+
+</kml>

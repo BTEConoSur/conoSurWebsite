@@ -1,0 +1,9 @@
+h1 {
+    color: hotpink;
+    font-family: cursive;
+  }
+
+#map{
+    width: 100%;
+    height: 100vh;
+}
