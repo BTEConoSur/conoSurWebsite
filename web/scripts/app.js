@@ -27,12 +27,9 @@ fetch('http://localhost:3000/coorddata')
             setTimeout(() => {
                        
                 const marker = new L.Marker(mark, {});
-                map.addLayer(marker)
+                map.addLayer(marker);
 
             }, 1000);
-            
-
-       
             
         })
 
@@ -53,32 +50,32 @@ map.on("zoomend", function () {
 
     try{
 
-    if (newMapZoom < 8.5) {
+        if (newMapZoom < 8.5) {
 
-        polygons.forEach(polygon =>{
+            polygons.forEach(polygon =>{
+                
+                setTimeout(() => {
+                    map.removeLayer(polygon)
+
+                }, 100);
+
+            })
+        } else {
+            // Removing entire geoJson layer that contains the points.
             
-            setTimeout(() => {
-                map.removeLayer(polygon)
+            polygons.forEach(polygon =>{
 
-            }, 100);
+                setTimeout(() => {
+                    map.addLayer(polygon);
 
-        })
-    } else {
-        // Removing entire geoJson layer that contains the points.
-        
-        polygons.forEach(polygon =>{
+                }, 100);
 
-            setTimeout(() => {
-                map.addLayer(polygon)
-
-            }, 100);
-
-        })
+            });     
         
     }}catch{
         
-    }
+    };
 });
 
-map.addLayer(markerslayer)
+map.addLayer(markerslayer);
 
