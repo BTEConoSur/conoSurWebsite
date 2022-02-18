@@ -37,7 +37,7 @@ fetch('http://localhost:3000/coorddata')
 
         for (let i = 0; i < 51; i++){
         
-            polygons[i] = L.polygon(datPol.splice(0, 50), {color: 'yellow', fill: false, fillColor:'yellow', weight:5., opacity:10, fillOpacity:20, smoothFactor:2.0});
+            polygons[i] = L.polygon(datPol.splice(0, 50), {color: 'yellow', fill: false, weight:5., opacity:10, smoothFactor:2.0});
         
         };
         
@@ -61,7 +61,6 @@ map.on("zoomend", function () {
 
             })
         } else {
-            // Removing entire geoJson layer that contains the points.
             
             polygons.forEach(polygon =>{
 
