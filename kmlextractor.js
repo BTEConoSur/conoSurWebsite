@@ -1,27 +1,17 @@
 const fs = require('fs');
 const DOMParser = require('xmldom').DOMParser;
-const express= require('express')
+const express = require('express');
 const app = express();
 
 async function readKML(name) {
 
     let kmlString = fs.readFileSync(name).toString();
 
-    const result = await extractGoogleCoords(kmlString);
-
-    return result;
-
-}
-
-module.exports.readKML = readKML;
-
-async function extractGoogleCoords(kmlString) {
-
     let googlePolygons = [];
     let googleMarkers = [];
-    let googlePolNames = [];
 
     var xmlDoc = null; 
+
     //Parse the kml 
     try { 
         //Internet Explorer 
@@ -53,61 +43,57 @@ async function extractGoogleCoords(kmlString) {
 
         if (placemark[i] == undefined && polygon[i] == undefined){
 
-            break
+            break;
         }
         if (placemark[i] != undefined){
-            placemarkArray.push(placemark[i])
+            placemarkArray.push(placemark[i]);
         };
         if (polygon[i] != undefined){
             polygonArray.push(polygon[i]);
         };
 
-    }
+    };
 
     if (xmlDoc.documentElement.nodeName == "kml") {
 
         for (const item of placemarkArray) {
-            let polygons = item.getElementsByTagName('Polygon');
+
             let markers = item.getElementsByTagName('Point');
             
-            const polygonsactivated = true;
-
             /** POLYGONS PARSE **/
-            if(polygonsactivated == true){
-                for (const polygon of polygonArray) {
-                    let coords = polygon.getElementsByTagName('coordinates')[0].childNodes[0].nodeValue.trim();
-                    let points = coords.split(" ");
+            for (const polygon of polygonArray) {
+                let coords = polygon.getElementsByTagName('coordinates')[0].childNodes[0].nodeValue.trim();
+                let points = coords.split(" ");
 
-                    let googlePolygonsPaths = [];
-                    for (const point of points) {
-                        let coord = point.split(",");
-                        googlePolygonsPaths.push({ lat: +coord[1], lng: +coord[0] });
-                    };
-                    googlePolygons.push(googlePolygonsPaths);
-                }
-            }
+                let googlePolygonsPaths = [];
+                for (const point of points) {
+                    let coord = point.split(",");
+                    googlePolygonsPaths.push({ lat: +coord[1], lng: +coord[0] });
+                };
+                googlePolygons.push(googlePolygonsPaths);
+            };
+            
 
             /** MARKER PARSE **/
 
-            let markersArrray = []
+            let markersArrray = [];
 
             for(let i = 0; i <1000; i++){
 
                 if (markers[i] == undefined){
         
-                    break
-                }                    
+                    break;
+                };                    
                 
-                markersArrray.push(markers[i])
+                markersArrray.push(markers[i]);;
         
-            }
+            };
             
             for (const marker of markersArrray) {
                 var coords = marker.getElementsByTagName('coordinates')[0].childNodes[0].nodeValue.trim();
-                //console.log(marker.toString());
                 let coord = coords.split(",");
                 googleMarkers.push({ lat: +coord[1], lng: +coord[0] });
-            }
+            };
         }
     } else {
         throw "error while parsing";
@@ -118,4 +104,6 @@ async function extractGoogleCoords(kmlString) {
     const result = { markers: googleMarkers, polygons: googlePolygons};
 
     return result;
-};
+}
+
+module.exports.readKML = readKML;
