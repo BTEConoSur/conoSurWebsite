@@ -104,7 +104,7 @@ async function extractGoogleCoords(kmlString) {
             
             for (const marker of markersArrray) {
                 var coords = marker.getElementsByTagName('coordinates')[0].childNodes[0].nodeValue.trim();
-                console.log(marker.toString());
+                //console.log(marker.toString());
                 let coord = coords.split(",");
                 googleMarkers.push({ lat: +coord[1], lng: +coord[0] });
             }
